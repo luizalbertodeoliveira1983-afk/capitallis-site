@@ -28,6 +28,8 @@ const firebaseConfig = {
   measurementId: "G-NXEKY07YXZ"
 };
 const app = initializeApp(firebaseConfig);
-</script>
+import { getAuth } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+  const auth = getAuth(app);
+  </script>
 </body>
 </html>
