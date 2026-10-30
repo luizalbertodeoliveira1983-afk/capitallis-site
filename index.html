@@ -10,7 +10,11 @@
 </head>
 <body>
 <header><div class="brand">💰 CAPITALLIS</div><div class="tag">PREMIUM • Ambiente de demonstração</div></header>
-<main><section id="welcome" class="card"><h2>Bem-vindo</h2><p>Conheça seu painel financeiro de demonstração.</p><label for="name">Seu nome</label><input id="name" placeholder="Digite seu nome" maxlength="40" autocomplete="off"><button onclick="enter()">Entrar na demonstração</button><p class="muted">Sem senha, cadastro real ou acesso bancário.</p></section>
+<form id="cadastro">
+  <input type="email" id="emailCadastro" placeholder="Seu e-mail" required>
+  <input type="password" id="senhaCadastro" placeholder="Crie uma senha" minlength="6" required>
+  <button type="submit">Criar conta</button></form>
+  <main><section id="welcome" class="card"><h2>Bem-vindo</h2><p>Conheça seu painel financeiro de demonstração.</p><label for="name">Seu nome</label><input id="name" placeholder="Digite seu nome" maxlength="40" autocomplete="off"><button onclick="enter()">Entrar na demonstração</button><p class="muted">Sem senha, cadastro real ou acesso bancário.</p></section>
 <section id="app" class="hidden"><div class="card"><div id="hello"></div><p class="muted">Saldo fictício</p><div class="balance" id="balance">R$ 0,00</div><p class="notice">⚠️ Valores de teste. Não são dinheiro real.</p></div><nav class="row" aria-label="Seções"><button onclick="show('mov')">Movimentações</button><button onclick="show('hist')">Histórico</button><button onclick="show('inv')">Investimentos</button><button class="secondary" onclick="leave()">Sair</button></nav><section id="mov" class="card"><h2>💳 Movimentações simuladas</h2><label for="amount">Valor em reais</label><input id="amount" type="number" min="0.01" max="1000000" step="0.01" placeholder="Ex.: 100,00"><button onclick="move('deposito')">Simular depósito</button><button onclick="move('saque')">Simular saque</button><p id="msg" role="status" class="muted"></p></section><section id="hist" class="card hidden"><h2>📋 Histórico fictício</h2><div id="history">Nenhuma movimentação simulada.</div></section><section id="inv" class="card hidden"><h2>📈 Investimentos</h2><p>Área educativa: conheça conceitos de renda fixa, fundos e ações.</p><p class="muted">Não há aplicação de dinheiro, cálculo de rendimento prometido nem recomendação financeira.</p></section></section></main>
 <footer>CAPITALLIS • Protótipo gratuito • Sem transações financeiras reais • Dados mantidos apenas durante esta sessão.</footer>
 <script>
