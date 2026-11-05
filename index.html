@@ -53,6 +53,8 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
   try {
     await signInWithEmailAndPassword(auth, email, senha);
     alert("Login realizado com sucesso!");
+document.getElementById("welcome").classList.add("hidden");
+document.getElementById("app").classList.remove("hidden");
   } catch (erro) {
     alert("Erro ao entrar: " + erro.message);
   }
