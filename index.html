@@ -46,6 +46,17 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
   alert("Erro ao criar conta: " + erro.message);
 }
 });
+  document.getElementById("botaoLogin").addEventListener("click", async () => {
+  const email = document.getElementById("emailCadastro").value.trim();
+  const senha = document.getElementById("senhaCadastro").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, senha);
+    alert("Login realizado com sucesso!");
+  } catch (erro) {
+    alert("Erro ao entrar: " + erro.message);
+  }
+});
 </script>
 </body>
 </html>
