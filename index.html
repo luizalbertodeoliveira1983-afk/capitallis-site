@@ -32,8 +32,19 @@ const firebaseConfig = {
   measurementId: "G-NXEKY07YXZ"
 };
 const app = initializeApp(firebaseConfig);
-import { getAuth } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
   const auth = getAuth(app);
-  </script>
+  document.getElementById("cadastro").addEventListener("submit", async (e) => {
+    e.preventDefault();
+  const senha = document.getElementById("senhaCadastro").value;
+    const email = document.getElementById("emailCadastro").value;
+    try {
+  await createUserWithEmailAndPassword(auth, email, senha);
+  alert("Conta criada com sucesso!");
+} catch (erro) {
+  alert("Erro ao criar conta: " + erro.message);
+}
+});
+</script>
 </body>
 </html>
