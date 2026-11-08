@@ -3,67 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CAPITALLIS Premium • Demonstração</title>
+<title>Capitallis premiium • Demonstração</title>
 <style>
-:root{font-family:Arial,sans-serif;color:#f6e7bc;background:#090909}*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#16130c,#070707 60%);min-height:100vh}header,main,footer{max-width:720px;margin:auto;padding:22px}header{padding-top:35px}.brand{font-weight:900;font-size:32px;letter-spacing:1px;color:#eac46e}.tag{color:#b9a77f;margin-top:10px}.card{background:#171717;border:1px solid #6e5424;border-radius:20px;padding:22px;margin:16px 0;box-shadow:0 6px 25px #0007}h2{margin-top:0;color:#f6d58a}input{width:100%;background:#0b0b0b;color:white;border:1px solid #9b793d;border-radius:12px;padding:15px;margin:8px 0;font-size:16px}button{background:linear-gradient(110deg,#b58b39,#f7da8a);color:#1a1409;border:0;border-radius:12px;padding:13px 16px;margin:5px 4px 5px 0;font-weight:bold;font-size:15px;cursor:pointer}button.secondary{background:#303030;color:#f7d994}button:focus-visible,input:focus-visible{outline:3px solid white}.balance{font-size:40px;font-weight:bold;color:#ffdf92;margin:16px 0}.muted,small{color:#c6b994;line-height:1.5}.hidden{display:none}.row{display:flex;flex-wrap:wrap;gap:6px}.entry{padding:12px 0;border-bottom:1px solid #4c4029}.notice{background:#342814;border-radius:12px;padding:12px;color:#ffe4a6}footer{font-size:12px;color:#a99b79;padding-bottom:30px}
-  .hidden {
-  display: none;
-  }
+:root{font-family:Arial,sans-serif;color:#f6e7bc;background:#090909}*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#16130c,#070707 60%);min-height:100vh}header,main,footer,.auth{max-width:720px;margin:auto;padding:22px}header{padding-top:35px}.brand{font-weight:900;font-size:30px;color:#eac46e}.tag{color:#b9a77f;margin-top:10px}.card{background:#171717;border:1px solid #6e5424;border-radius:20px;padding:22px;margin:16px 0;box-shadow:0 6px 25px #0007}h2{margin-top:0;color:#f6d58a}input{width:100%;background:#0b0b0b;color:white;border:1px solid #9b793d;border-radius:12px;padding:15px;margin:8px 0;font-size:16px}button{background:linear-gradient(110deg,#b58b39,#f7da8a);color:#1a1409;border:0;border-radius:12px;padding:13px 16px;margin:5px 4px 5px 0;font-weight:bold;font-size:15px;cursor:pointer}button.secondary{background:#303030;color:#f7d994}button:focus-visible,input:focus-visible{outline:3px solid white}.balance{font-size:40px;font-weight:bold;color:#ffdf92;margin:16px 0}.muted,small{color:#c6b994;line-height:1.5}.hidden{display:none!important}.row{display:flex;flex-wrap:wrap;gap:6px}.entry{padding:12px 0;border-bottom:1px solid #4c4029}.notice{background:#342814;border-radius:12px;padding:12px;color:#ffe4a6}footer{font-size:12px;color:#a99b79;padding-bottom:30px}
 </style>
 </head>
 <body>
-<header><div class="brand">💰 CAPITALLIS</div><div class="tag">PREMIUM • Ambiente de demonstração</div></header>
-<form id="cadastro">
-  <input type="email" id="emailCadastro" placeholder="Seu e-mail" required>
-  <input type="password" id="senhaCadastro" placeholder="Crie uma senha" minlength="6" required>
-  <button type="submit">Criar conta</button></form>
-  <button type="button" id="botaoLogin">Entrar na conta</button>
-  <main><section id="welcome" class="card"><h2>Bem-vindo</h2><p>Conheça seu painel financeiro de demonstração.</p><label for="name">Seu nome</label><input id="name" placeholder="Digite seu nome" maxlength="40" autocomplete="off"><button onclick="enter()">Entrar na demonstração</button><p class="muted">Sem senha, cadastro real ou acesso bancário.</p></section>
-<section id="app" class="hidden"><div class="card"><div id="hello"></div><p class="muted">Saldo fictício</p><div class="balance" id="balance">R$ 0,00</div><p class="notice">⚠️ Valores de teste. Não são dinheiro real.</p></div><nav class="row" aria-label="Seções"><button onclick="show('mov')">Movimentações</button><button onclick="show('hist')">Histórico</button><button onclick="show('inv')">Investimentos</button><button class="secondary" onclick="leave()">Sair</button></nav><section id="mov" class="card"><h2>💳 Movimentações simuladas</h2><label for="amount">Valor em reais</label><input id="amount" type="number" min="0.01" max="1000000" step="0.01" placeholder="Ex.: 100,00"><button onclick="move('deposito')">Simular depósito</button><button onclick="move('saque')">Simular saque</button><p id="msg" role="status" class="muted"></p></section><section id="hist" class="card hidden"><h2>📋 Histórico fictício</h2><div id="history">Nenhuma movimentação simulada.</div></section><section id="inv" class="card hidden"><h2>📈 Investimentos</h2><p>Área educativa: conheça conceitos de renda fixa, fundos e ações.</p><p class="muted">Não há aplicação de dinheiro, cálculo de rendimento prometido nem recomendação financeira.</p></section></section></main>
-<footer>CAPITALLIS • Protótipo gratuito • Sem transações financeiras reais • Dados mantidos apenas durante esta sessão.</footer>
+<header><div class="brand">💰 Capitallis premiium</div><div class="tag">Ambiente de demonstração</div></header>
+<section class="auth card" id="authArea"><h2>Minha conta</h2><form id="cadastro"><label for="emailCadastro">E-mail</label><input type="email" id="emailCadastro" placeholder="Seu e-mail" autocomplete="email" required><label for="senhaCadastro">Senha</label><input type="password" id="senhaCadastro" placeholder="Sua senha (mínimo 6 caracteres)" minlength="6" autocomplete="current-password" required><div class="row"><button type="submit">Criar conta</button><button type="button" id="botaoLogin">Entrar na conta</button></div></form><p id="authMsg" class="muted" role="status"></p></section>
+<main><section id="app" class="hidden"><div class="card"><div id="hello"></div><p class="muted">Saldo fictício</p><div class="balance" id="balance">R$ 0,00</div><p class="notice">⚠️ Valores de teste. Não são dinheiro real.</p></div><nav class="row" aria-label="Seções"><button type="button" onclick="show('mov')">Movimentações</button><button type="button" onclick="show('hist')">Histórico</button><button type="button" onclick="show('inv')">Investimentos</button><button type="button" class="secondary" id="sair">Sair</button></nav><section id="mov" class="card"><h2>💳 Movimentações simuladas</h2><label for="amount">Valor em reais</label><input id="amount" type="number" min="0.01" max="1000000" step="0.01" placeholder="Ex.: 100,00"><button type="button" onclick="move('deposito')">Simular depósito</button><button type="button" onclick="move('saque')">Simular saque</button><p id="msg" role="status" class="muted"></p></section><section id="hist" class="card hidden"><h2>📋 Histórico fictício</h2><div id="history">Nenhuma movimentação simulada.</div></section><section id="inv" class="card hidden"><h2>📈 Investimentos</h2><p>Área educativa: conheça conceitos de renda fixa, fundos e ações.</p><p class="muted">Não há aplicação de dinheiro nem rendimento prometido.</p></section></section></main>
+<footer>Capitallis premiium • Protótipo gratuito • Sem transações financeiras reais • Saldo e histórico de teste salvos neste navegador, por conta.</footer>
 <script>
-let balance=0,history=[];const brl=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});function enter(){const name=document.getElementById('name').value.trim();if(!name){alert('Digite seu nome para continuar.');return}document.getElementById('hello').textContent='Olá, '+name+' 👋';document.getElementById('welcome').classList.add('hidden');document.getElementById('app').classList.remove('hidden')}function show(id){for(const x of ['mov','hist','inv'])document.getElementById(x).classList.toggle('hidden',x!==id)}function move(type){const el=document.getElementById('amount'),v=Number(el.value),msg=document.getElementById('msg');if(!Number.isFinite(v)||v<=0||v>1000000||Math.round(v*100)!==v*100){msg.textContent='Informe um valor válido de até R$ 1.000.000,00, com no máximo 2 casas decimais.';return}if(type==='saque'&&v>balance){msg.textContent='Saldo fictício insuficiente.';return}balance=Math.round((balance+(type==='deposito'?v:-v))*100)/100;history.unshift({type,v,date:new Date().toLocaleString('pt-BR')});document.getElementById('balance').textContent=brl(balance);document.getElementById('history').replaceChildren(...history.map(item=>{const div=document.createElement('div');div.className='entry';div.textContent=(item.type==='deposito'?'➕ Depósito':'➖ Saque')+' • '+brl(item.v)+' • '+item.date;return div}));msg.textContent='Operação fictícia registrada!';el.value='';salvarDados()}function leave(){balance=0;history=[];document.getElementById('balance').textContent=brl(0);document.getElementById('history').textContent='Nenhuma movimentação simulada.';document.getElementById('msg').textContent='';document.getElementById('name').value='';document.getElementById('app').classList.add('hidden');document.getElementById('welcome').classList.remove('hidden');show('mov')}
-carregarDados();
+let balance=0,history=[],currentUserId=null;
+const $=id=>document.getElementById(id);
+const brl=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function storageKey(){return currentUserId?'capitallis-demo-v2-'+currentUserId:null}
+function salvarDados(){const key=storageKey();if(!key)return;try{localStorage.setItem(key,JSON.stringify({balance,history}))}catch(e){$('msg').textContent='Não foi possível salvar neste navegador.'}}
+function carregarDados(){balance=0;history=[];const key=storageKey();if(key){try{const data=JSON.parse(localStorage.getItem(key)||'null');if(data&&Number.isFinite(data.balance)&&data.balance>=0){balance=Math.round(data.balance*100)/100;history=Array.isArray(data.history)?data.history.filter(x=>x&&['deposito','saque'].includes(x.type)&&Number.isFinite(x.v)&&typeof x.date==='string').slice(0,1000):[]}}catch(e){console.warn('Dados locais inválidos',e)}}render()}
+function render(){$('balance').textContent=brl(balance);const target=$('history');target.replaceChildren();if(!history.length){target.textContent='Nenhuma movimentação simulada.';return}for(const item of history){const div=document.createElement('div');div.className='entry';div.textContent=(item.type==='deposito'?'➕ Depósito':'➖ Saque')+' • '+brl(item.v)+' • '+item.date;target.appendChild(div)}}
+function show(id){for(const x of ['mov','hist','inv'])$(x).classList.toggle('hidden',x!==id)}
+function move(type){if(!currentUserId)return;const el=$('amount'),v=Number(el.value),msg=$('msg');if(!el.value||!Number.isFinite(v)||v<=0||v>1000000||Math.round(v*100)!==v*100){msg.textContent='Informe um valor válido de até R$ 1.000.000,00, com no máximo 2 casas decimais.';return}if(type==='saque'&&v>balance){msg.textContent='Saldo fictício insuficiente.';return}balance=Math.round((balance+(type==='deposito'?v:-v))*100)/100;history.unshift({type,v,date:new Date().toLocaleString('pt-BR')});render();salvarDados();msg.textContent='Operação fictícia registrada!';el.value=''}
+function entrarPainel(user){currentUserId=user.uid;$('hello').textContent='Olá, '+(user.email||'usuário')+' 👋';$('authArea').classList.add('hidden');$('app').classList.remove('hidden');$('msg').textContent='';carregarDados();show('mov')}
+function sairPainel(){$('app').classList.add('hidden');$('authArea').classList.remove('hidden');$('senhaCadastro').value='';$('msg').textContent='';currentUserId=null;balance=0;history=[];render()}
 </script>
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyC3Zl0LoarHr9tDJYbTc9esOkkLJqfVMbQ",
-  authDomain: "capitallispremium.firebaseapp.com",
-  projectId: "capitallispremium",
-  storageBucket: "capitallispremium.firebasestorage.app",
-  messagingSenderId: "560869100041",
-  appId: "1:560869100041:web:7ccf85de5f7b28381006d8",
-  measurementId: "G-NXEKY07YXZ"
-};
-const app = initializeApp(firebaseConfig);
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
-  const auth = getAuth(app);
-  document.getElementById("cadastro").addEventListener("submit", async (e) => {
-    e.preventDefault();
-  const senha = document.getElementById("senhaCadastro").value;
-    const email = document.getElementById("emailCadastro").value;
-    try {
-  await createUserWithEmailAndPassword(auth, email, senha);
-  alert("Conta criada com sucesso!");
-} catch (erro) {
-  alert("Erro ao criar conta: " + erro.message);
-}
-});
-  document.getElementById("botaoLogin").addEventListener("click", async () => {
-  const email = document.getElementById("emailCadastro").value.trim();
-  const senha = document.getElementById("senhaCadastro").value;
-
-  try {
-    await signInWithEmailAndPassword(auth, email, senha);
-    alert("Login realizado com sucesso!");
-document.getElementById("welcome").classList.add("hidden");
-document.getElementById("app").classList.remove("hidden");
-    document.getElementById("app").style.display = "block";
-  } catch (erro) {
-    alert("Erro ao entrar: " + erro.message);
-  }
-});
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut} from 'https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js';
+const firebaseConfig={apiKey:'AIzaSyC3Zl0LoarHr9tDJYbTc9esOkkLJqfVMbQ',authDomain:'capitallispremium.firebaseapp.com',projectId:'capitallispremium',storageBucket:'capitallispremium.firebasestorage.app',messagingSenderId:'560869100041',appId:'1:560869100041:web:7ccf85de5f7b28381006d8',measurementId:'G-NXEKY07YXZ'};
+const auth=getAuth(initializeApp(firebaseConfig));
+const msg=document.getElementById('authMsg');
+function credentials(){return {email:document.getElementById('emailCadastro').value.trim(),senha:document.getElementById('senhaCadastro').value}}
+document.getElementById('cadastro').addEventListener('submit',async e=>{e.preventDefault();const {email,senha}=credentials();msg.textContent='Criando conta...';try{await createUserWithEmailAndPassword(auth,email,senha);msg.textContent='Conta criada com sucesso!'}catch(e){msg.textContent='Não foi possível criar a conta: '+e.message}});
+document.getElementById('botaoLogin').addEventListener('click',async()=>{const {email,senha}=credentials();if(!email||!senha){msg.textContent='Informe e-mail e senha.';return}msg.textContent='Entrando...';try{await signInWithEmailAndPassword(auth,email,senha);msg.textContent=''}catch(e){msg.textContent='Não foi possível entrar: '+e.message}});
+document.getElementById('sair').addEventListener('click',async()=>{try{await signOut(auth)}catch(e){msg.textContent='Erro ao sair: '+e.message}});
+onAuthStateChanged(auth,user=>{if(user){entrarPainel(user)}else{sairPainel()}});
 </script>
 </body>
 </html>
