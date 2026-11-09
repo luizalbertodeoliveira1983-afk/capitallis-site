@@ -40,15 +40,84 @@ $('withdraw').addEventListener('click',()=>move('saque'));
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
 $('logout').addEventListener('click',()=>{showTab('mov');$('profilePanel').classList.add('hidden');$('msg').textContent='Demonstração encerrada. Seus dados de teste continuam salvos neste navegador.'});
 loadData();loadProfile();
+
 function prepararPix() {
-  const valor = Number(document.getElementById("valorPix").value);
-  if (!Number.isFinite(valor) || valor <= 0) {
-    alert("Digite um valor válido.");
+  const campo = document.getElementById("valorPix");
+  const valor = Number(campo.value.replace(",", "."));
+
+  if (!Number.isFinite(valor) || valor < 0.01 ||
+      Math.round(valor * 100) !== valor * 100) {
+    alert("Digite um valor válido a partir de R$ 0,01.");
     return;
   }
-  alert("Valor escolhido: R$ " + valor.toFixed(2) +
-        ". Próximo passo: gerar o Pix do Nubank.");
+
+  const chave = "887d8295-37ca-4a01-818c-d62c4d54a527";
+  const nome = "LUIZ ALBERTO DE OLIVEIRA SOARES";
+  const cidade = "SANTA LUZIA";
+
+  function campoPix(id, texto) {
+    return id + String(new TextEncoder().encode(texto).length)
+      .padStart(2, "0") + texto;
+  }
+
+  const conta = campoPix("00", "BR.GOV.BCB.PIX") +
+                campoPix("01", chave);
+
+  const dados =
+    campoPix("00", "01") +
+    campoPix("26", conta) +
+    campoPix("52", "0000") +
+    campoPix("53", "986") +
+    campoPix("54", valor.toFixed(2)) +
+    campoPix("58", "BR") +
+    campoPix("59", nome.slice(0, 25)) +
+    campoPix("60", cidade) +
+    campoPix("62", campoPix("05", "***")) +
+    "6304";
+
+  let crc = 0xFFFF;
+  for (const byte of new TextEncoder().encode(dados)) {
+    crc ^= byte << 8;
+    for (let i = 0; i < 8; i++) {
+      crc = (crc & 0x8000)
+        ? ((crc << 1) ^ 0x1021) & 0xFFFF
+        : (crc << 1) & 0xFFFF;
+    }
+  }
+
+  const codigo = dados + crc.toString(16).toUpperCase().padStart(4, "0");
+
+  let resultado = document.getElementById("resultadoPix");
+  if (!resultado) {
+    resultado = document.createElement("div");
+    resultado.id = "resultadoPix";
+    campo.closest("section").appendChild(resultado);
+  }
+
+  resultado.innerHTML = "";
+  const titulo = document.createElement("p");
+  titulo.textContent = "Pix de R$ " + valor.toFixed(2);
+  const texto = document.createElement("textarea");
+  texto.value = codigo;
+  texto.readOnly = true;
+  texto.style.width = "100%";
+  texto.rows = 5;
+
+  const botao = document.createElement("button");
+  botao.textContent = "Copiar Pix";
+  botao.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(codigo);
+      alert("Código Pix copiado!");
+    } catch {
+      texto.select();
+      alert("Selecione e copie o código Pix.");
+    }
+  };
+
+  resultado.append(titulo, texto, botao);
 }
+
 </script>
 <section class="card">
   <h2>Depositar com Pix</h2>
