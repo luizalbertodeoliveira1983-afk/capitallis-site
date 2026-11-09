@@ -41,4 +41,16 @@ document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()
 $('logout').addEventListener('click',()=>{showTab('mov');$('profilePanel').classList.add('hidden');$('msg').textContent='Demonstração encerrada. Seus dados de teste continuam salvos neste navegador.'});
 loadData();loadProfile();
 </script>
+<section class="card">
+  <h2>Depositar com Pix</h2>
+  <p>Pagamento real via Nubank</p>
+  <p>Escolha o valor do pagamento:</p>
+  <input type="number" id="valorPix"
+    min="0.01" step="0.01"
+    placeholder="Valor em reais">
+  <button onclick="alert('Pix em configuração. Nenhum pagamento foi gerado.')">
+    Pagar com Pix
+  </button>
+  <p>Confirme o pagamento no aplicativo do banco.</p>
+</section>
 </body></html>
