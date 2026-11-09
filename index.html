@@ -40,6 +40,15 @@ $('withdraw').addEventListener('click',()=>move('saque'));
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
 $('logout').addEventListener('click',()=>{showTab('mov');$('profilePanel').classList.add('hidden');$('msg').textContent='Demonstração encerrada. Seus dados de teste continuam salvos neste navegador.'});
 loadData();loadProfile();
+function prepararPix() {
+  const valor = Number(document.getElementById("valorPix").value);
+  if (!Number.isFinite(valor) || valor <= 0) {
+    alert("Digite um valor válido.");
+    return;
+  }
+  alert("Valor escolhido: R$ " + valor.toFixed(2) +
+        ". Próximo passo: gerar o Pix do Nubank.");
+}
 </script>
 <section class="card">
   <h2>Depositar com Pix</h2>
